@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// linked list implementation in C language by Mouzakitis Nikolaos.February 2016.
+// linked list implementation in C language by Mouzakitis Nikolaos.March 2016.
 
 struct kombos {
     int data;
@@ -43,14 +43,10 @@ void create(struct kombos *p)
         new->data = data;
         //DEBUG         printf("[debug]line2 %d\n",seeker->link->data);
 
-
-
         while(seeker->next != NULL)
         {
             seeker = seeker->next;
         }
-
-
         seeker->next = new;
         new->next = NULL;
         new->pre = seeker;
@@ -83,7 +79,22 @@ void print_nodes(struct kombos *p)
 
 void delete(struct kombos *p)
 {
+        struct kombos *seeker;
 
+        seeker = malloc(sizeof(struct kombos));
+
+        seeker = p;
+        if(p->pre == NULL)
+                printf("Unable to delete.\n");
+        else
+        {
+                while(seeker->next != NULL)
+                        seeker = seeker->next;
+                printf("Deleting element %d\n",seeker->data);
+
+                seeker = seeker->pre;
+                seeker->next = NULL;
+        }
 
 }
 
@@ -103,21 +114,21 @@ int main(void)
     while(1)
     {
 
-        printf("1.create a new node.\n2.exit\n3.print existing nodes data.\n");
+        printf("1.create a new node.\n2.exit\n3.print existing nodes data.\n4.Delete last input.\n");
         scanf("%d",&ch);
         switch(ch) {
         case 1 :
             create(p);
             break;
         case 2 :
-            delete(p);
-            break;
+            exit(0);
+
         case 3 :
             print_nodes(p);
             break;
         case 4 :
             delete(p);
-            exit(0);
+            break;
         default :
             break;
         }
