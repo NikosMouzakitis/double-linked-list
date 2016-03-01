@@ -101,8 +101,9 @@ void delete_given(struct kombos *p)
         printf("What position's element you want to remove?\n:");
 
         scanf("%d",&pos);
-
-        if(pos <= elem )
+        if(pos == 0)
+                printf("Error,unable to run that command.\n");
+        else if(pos <= elem )
         {
 
                 for(count = 0 ; count < pos; count++)
